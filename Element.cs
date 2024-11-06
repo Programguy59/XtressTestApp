@@ -15,7 +15,12 @@ namespace XtressTestApp
             Value = value;
             NextElement = nextElement;
         }
-        
+        public Element(int value)
+        {
+            Value = value;
+            NextElement = null;
+        }
+
     }
 
     

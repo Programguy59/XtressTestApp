@@ -100,5 +100,20 @@ namespace XtressTestApp
                 
             }
         }
+
+        public void Reverse()
+        {
+            OurLinkList temp = new OurLinkList();
+
+            for (int i = 0; i < Count()-1; i++)
+            {
+                temp.Add_First(FirstElement);
+                Remove_First();
+            }
+            this.FirstElement = temp.FirstElement;
+
+        }
+
+
     }
 }
