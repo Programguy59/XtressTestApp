@@ -1,38 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XtressTestApp
+﻿namespace XtressTestApp
 {
     public class OurLinkList
     {
         public Element FirstElement;
-        public OurLinkList(Element firstElement) 
-        {
-            FirstElement = firstElement;
-        }
         public OurLinkList()
         {
         }
-
-
         public void Add_First(Element data)
         {
             data.NextElement = FirstElement;
-            Element Temp  = new Element(data.Value,data.NextElement);
+            Element Temp = new Element(data.Value, data.NextElement);
             FirstElement = Temp;
+        }
+        public void Add_First(int data)
+        {
+            FirstElement = new Element(data, FirstElement);
         }
         public void Remove_First()
         {
-            FirstElement = FirstElement.NextElement;
+            if (FirstElement != null)
+            {
+                FirstElement = FirstElement.NextElement;
+            }
         }
-
         public int Count()
         {
+            if (FirstElement == null)
+            {
+                return 0;
+            }
+
             Element currentElement = FirstElement;
             int count = 1;
 
@@ -40,19 +37,24 @@ namespace XtressTestApp
             {
                 currentElement = currentElement.NextElement;
                 count++;
-            } 
+            }
 
             return count;
         }
-        
+
         public string To_String()
         {
+            if (FirstElement == null)
+            {
+                return "";
+            }
+
             Element currentElement = FirstElement;
             string result = "";
             bool run = true;
 
             while (run)
-            {        
+            {
                 if (currentElement.NextElement == null)
                 {
                     result = result + currentElement.Value;
@@ -62,13 +64,19 @@ namespace XtressTestApp
                 {
                     result = result + currentElement.Value + ",";
                     currentElement = currentElement.NextElement;
-                }          
+                }
             }
             return result;
         }
 
         public void Sort(bool IsAcsending)
         {
+
+            if (FirstElement == null)
+            {
+                return;
+            }
+
             Element currentElement = FirstElement;
             bool run = currentElement.NextElement != null;
 
@@ -79,7 +87,7 @@ namespace XtressTestApp
                     break;
                 }
 
-                if (currentElement.Value > currentElement.NextElement.Value ) 
+                if (currentElement.Value > currentElement.NextElement.Value)
                 {
                     int temp;
                     temp = currentElement.NextElement.Value;
@@ -87,17 +95,11 @@ namespace XtressTestApp
                     currentElement.Value = temp;
                     currentElement = FirstElement;
                 }
-                
                 else
                 {
-                    if (currentElement.NextElement == null)
-                    {
-                        run = false;
-                    }
-                    else
-                    {
-                        currentElement = currentElement.NextElement;
-                    }
+
+                    currentElement = currentElement.NextElement;
+
                 }
             }
             if (!IsAcsending)
@@ -116,10 +118,8 @@ namespace XtressTestApp
                 temp.Add_First(new Element(FirstElement.Value));
                 Remove_First();
             }
+
             FirstElement = temp.FirstElement;
-
         }
-
-
     }
 }
