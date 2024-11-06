@@ -66,14 +66,38 @@ namespace XtressTestApp
         public void Sort()
         {
             Element currentElement = FirstElement;
-            bool run = true;
+            bool run = currentElement.NextElement != null;
+
+
 
             while (run)
             {
                 if (currentElement.NextElement == null)
                 {
                     run = false;
+                    break;
                 }
+
+                if (currentElement.Value > currentElement.NextElement.Value) 
+                {
+                    int temp;
+                    temp = currentElement.NextElement.Value;
+                    currentElement.NextElement.Value = currentElement.Value;
+                    currentElement.Value = temp;
+                } else
+                {
+                    if (currentElement.NextElement == null)
+                    {
+                        run = false;
+                    }
+                    else
+                    {
+                        currentElement = currentElement.NextElement;
+                    }
+                }
+
+
+                
             }
         }
     }
