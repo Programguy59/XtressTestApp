@@ -11,6 +11,7 @@
 
             linkList.Add_First(element4);
             linkList.Add_First(element2);
+            linkList.Add_First(element2);
             linkList.Add_First(element3);
 
             linkList.Sort();

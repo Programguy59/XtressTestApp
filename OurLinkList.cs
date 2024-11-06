@@ -14,7 +14,10 @@ namespace XtressTestApp
         {
             FirstElement = firstElement;
         }
-        
+        public OurLinkList()
+        {
+        }
+
 
         public void Add_First(Element data)
         {
@@ -68,22 +71,19 @@ namespace XtressTestApp
             Element currentElement = FirstElement;
             bool run = currentElement.NextElement != null;
 
-
-
             while (run)
             {
                 if (currentElement.NextElement == null)
                 {
-                    run = false;
                     break;
                 }
-
-                if (currentElement.Value > currentElement.NextElement.Value) 
+                if (currentElement.Value > currentElement.NextElement.Value ) 
                 {
                     int temp;
                     temp = currentElement.NextElement.Value;
                     currentElement.NextElement.Value = currentElement.Value;
                     currentElement.Value = temp;
+                    currentElement = FirstElement;
                 } else
                 {
                     if (currentElement.NextElement == null)
