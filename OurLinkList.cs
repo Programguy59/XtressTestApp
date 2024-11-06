@@ -8,7 +8,7 @@ namespace XtressTestApp
 {
     public class OurLinkList
     {
-        Element FirstElement;
+        public Element FirstElement;
         public OurLinkList(Element firstElement) 
         {
             FirstElement = firstElement;
@@ -17,16 +17,26 @@ namespace XtressTestApp
 
         public void Add_First(Element data)
         {
-
+            data.NextElement = FirstElement;
+            FirstElement = data;
         }
         public void Remove_First()
         {
-
+            FirstElement = FirstElement.NextElement;
         }
 
         public int Count()
         {
-            return 2;
+            Element currentElement = FirstElement;
+            int count = 0;
+
+            do
+            {
+                currentElement = currentElement.NextElement;
+                count++;
+            } while (currentElement.NextElement != null);
+
+                return count;
         }
         
         public string To_String()

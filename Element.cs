@@ -8,8 +8,8 @@ namespace XtressTestApp
 {
     public class Element
     {
-        int Value;
-        Element NextElement;
+        public int Value;
+        public Element NextElement;
         public Element(int value, Element nextElement)
         {
             Value = value;
