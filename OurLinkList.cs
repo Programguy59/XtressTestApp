@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,8 @@ namespace XtressTestApp
         public void Add_First(Element data)
         {
             data.NextElement = FirstElement;
-            FirstElement = data;
+            Element Temp  = new Element(data.Value,data.NextElement);
+            FirstElement = Temp;
         }
         public void Remove_First()
         {
@@ -28,25 +30,51 @@ namespace XtressTestApp
         public int Count()
         {
             Element currentElement = FirstElement;
-            int count = 0;
+            int count = 1;
 
-            do
+            while (currentElement.NextElement != null)
             {
                 currentElement = currentElement.NextElement;
                 count++;
-            } while (currentElement.NextElement != null);
+            } 
 
-                return count;
+            return count;
         }
         
         public string To_String()
         {
-            return "Hello wrld";
+            Element currentElement = FirstElement;
+            string result = "";
+            bool run = true;
+
+            while (run)
+            {        
+                if (currentElement.NextElement == null)
+                {
+                    result = result + currentElement.Value;
+                    run = false;
+                }
+                else
+                {
+                    result = result + currentElement.Value + ",";
+                    currentElement = currentElement.NextElement;
+                }          
+            }
+            return result;
         }
 
         public void Sort()
         {
+            Element currentElement = FirstElement;
+            bool run = true;
 
+            while (run)
+            {
+                if (currentElement.NextElement == null)
+                {
+                    run = false;
+                }
+            }
         }
     }
 }
