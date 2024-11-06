@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,7 +67,7 @@ namespace XtressTestApp
             return result;
         }
 
-        public void Sort()
+        public void Sort(bool IsAcsending)
         {
             Element currentElement = FirstElement;
             bool run = currentElement.NextElement != null;
@@ -77,6 +78,7 @@ namespace XtressTestApp
                 {
                     break;
                 }
+
                 if (currentElement.Value > currentElement.NextElement.Value ) 
                 {
                     int temp;
@@ -84,7 +86,9 @@ namespace XtressTestApp
                     currentElement.NextElement.Value = currentElement.Value;
                     currentElement.Value = temp;
                     currentElement = FirstElement;
-                } else
+                }
+                
+                else
                 {
                     if (currentElement.NextElement == null)
                     {
@@ -95,22 +99,24 @@ namespace XtressTestApp
                         currentElement = currentElement.NextElement;
                     }
                 }
-
-
-                
+            }
+            if (!IsAcsending)
+            {
+                Reverse();
             }
         }
 
         public void Reverse()
         {
+            int count = Count();
             OurLinkList temp = new OurLinkList();
 
-            for (int i = 0; i < Count()-1; i++)
+            for (int i = 0; i < count; i++)
             {
-                temp.Add_First(FirstElement);
+                temp.Add_First(new Element(FirstElement.Value));
                 Remove_First();
             }
-            this.FirstElement = temp.FirstElement;
+            FirstElement = temp.FirstElement;
 
         }
 
